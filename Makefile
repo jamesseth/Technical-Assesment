@@ -1,3 +1,6 @@
+
+.DEFAULT: help
+
 help: ## Prints help for targets with comments.
 	@cat $(MAKEFILE_LIST) \
 		| grep -E '^[a-zA-Z_-]+:.*?## .*$$' \
