@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 
 while ! $EXIT; do
-    # clear
+    clear
     echo "current sentence: ${SENTENCE}"
     select opt in sentence replace quit; do
 
@@ -32,7 +32,6 @@ while ! $EXIT; do
             ;;
             quit)
                 clear
-                deactivate
                 exit
                 break
             ;;
