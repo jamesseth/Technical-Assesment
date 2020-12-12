@@ -1,11 +1,24 @@
-from pathlib import Path
+"""Word collection implementation."""
 import random
+from pathlib import Path
 from typing import Union
 
 
 class WordCollection:
+    """
+    Instantiate a word collection instance.
+
+    Get the words from the parsed file path.
+    :param file_path: A path to a file with a word on each newline.
+    """
 
     def __init__(self, file_path: Union[Path, str]):
+        """
+        Instantiate a word collection instance.
+
+        Get the words from the parsed file path.
+        :param file_path: A path to a file with a word on each newline.
+        """
         self.input_file: Path = Path(file_path)
         self.words = self.get_words_from_file()
         self.__orignal_words = self.words
@@ -15,7 +28,8 @@ class WordCollection:
         Get words from file.
 
         :return: A dictionary of words with the first letter as the key and the
-                 value a list of the words starting with that letter in the file.
+                 value a list of the words starting with that letter in the
+                 file.
         """
         words = dict()
         if self.input_file.exists() and self.input_file.is_file():
@@ -38,7 +52,8 @@ class WordCollection:
 
         return words
 
-    def restore_words_for(self, letter):
+    def restore_words_for(self, letter: str):
+        """Restore the word collection for the parsed letter."""
         self.words[letter] = self.__orignal_words[letter]
 
     def find_replacement_word(self, word: str) -> str:
@@ -49,13 +64,13 @@ class WordCollection:
         If no word is found matching the predicate above return the original
         word.
         :param word: The word to replace.
-        :return: Replacement word matching the predicate otherwise the parsed 
+        :return: Replacement word matching the predicate otherwise the parsed
                  word.
         """
         if not word or not isinstance(word, str) or len(word) < 1:
-            raise ValueError("The parsed word to replace must be of type str"
-                             "and have length greater than 0."
-                             f"Got {word}")
+            raise ValueError('The parsed word to replace must be of type str'
+                             'and have length greater than 0.'
+                             f'Got {word}')
 
         first_letter = word[0].lower()
         word_length = len(word)

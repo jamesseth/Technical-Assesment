@@ -13,7 +13,7 @@
 ### To get started
 
     1. In the root of the project run the following command in your terminal.
-   
+
         ```sh
         make start
         ```
@@ -36,7 +36,7 @@
 ### Pytest unittests
 
     To run the pytests execute the following from the terminal in the projects root directory.
-    
+
     ```sh
     make pytest
     ```

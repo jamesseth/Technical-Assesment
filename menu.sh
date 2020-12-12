@@ -17,7 +17,7 @@ while ! $EXIT; do
     # clear
     echo "current sentence: ${SENTENCE}"
     select opt in sentence replace quit; do
-        
+
         case $opt in
             sentence)
                 clear

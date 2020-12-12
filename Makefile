@@ -21,3 +21,6 @@ pytest: ## Run unittests.
 	         && pip install -r requirements.txt \
 			 && pytest \
 			 && deactivate"
+
+pre-commit: ## Run pre-commits
+	bash -c "pre-commit run -a"

@@ -1,6 +1,7 @@
-from pathlib import Path
+"""Test cases for the WordCollection class."""
 import json
 import random
+from pathlib import Path
 
 import pytest
 
@@ -15,8 +16,8 @@ def mock_word_collection() -> 'WordCollection':
     :return: A WordCollection instance for the test case.
     """
     test_file_path = (Path(__file__).parent
-                      / "fixtures"
-                      / "test_words.txt").resolve()
+                      / 'fixtures'
+                      / 'test_words.txt').resolve()
     assert test_file_path.exists() is True
     return WordCollection(test_file_path)
 
@@ -29,8 +30,8 @@ def full_word_list_collection() -> 'WordCollection':
     :return: A WordCollection instance containing entire word collection.
     """
     test_file_path = (Path(__file__).parent
-                      / "fixtures"
-                      / "full_word_list.txt").resolve()
+                      / 'fixtures'
+                      / 'full_word_list.txt').resolve()
     assert test_file_path.exists() is True
     return WordCollection(test_file_path)
 
@@ -41,9 +42,9 @@ def random_string() -> str:
 
     :return: A random string of characters.
     """
-    result = ""
+    result = ''
     for _ in range(random.randint(1, 10)):
-        result += random.choice("abcdefghijklmnopqrstuvwxyz")
+        result += random.choice('abcdefghijklmnopqrstuvwxyz')
     return result
 
 
@@ -56,19 +57,20 @@ def expected_test_words() -> dict:
              that start with the letter used for the key.
     """
     test_word_file_path = Path(__file__).parent / \
-        "fixtures" / "expected_words.json"
+        'fixtures' / 'expected_words.json'
     with test_word_file_path.open('r') as fin:
         return json.load(fin)
     return dict()
 
 
 class TestWordCollection:
+    """Test case for the WordCollection class."""
 
     def test_init(self):
         """Test case for instanciating a WordCollection instance."""
         test_file_path = (Path(__file__).parent
-                          / "fixtures"
-                          / "test_words.txt").resolve()
+                          / 'fixtures'
+                          / 'test_words.txt').resolve()
         assert test_file_path.exists() is True
         word_collection = WordCollection(test_file_path)
         assert isinstance(word_collection, WordCollection)
@@ -91,15 +93,17 @@ class TestWordCollection:
         assert num_words == 22
 
     def test_replacement_word(self, mock_word_collection: 'WordCollection'):
-        test_word = "Canvas"
+        """Test case for replacing words."""
+        test_word = 'Canvas'
         res = mock_word_collection.find_replacement_word(test_word)
         assert res.startswith(test_word[0])
         assert len(res) == len(test_word)
 
-    def test_random_word_replacement(self,
-                                     full_word_list_collection: 'WordCollection'):
-        test_word = "test"
-        prev_word = ""
+    def test_random_word(self,
+                         full_word_list_collection: 'WordCollection'):
+        """Test case for randomness for word replacement."""
+        test_word = 'test'
+        prev_word = ''
         number_of_runs = 1000
         while number_of_runs > 0:
             rep_word = full_word_list_collection.find_replacement_word(

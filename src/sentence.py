@@ -1,10 +1,12 @@
 """
 Implement a class object to represent a sentence.
+
 Provide common utilities.
 """
 import re
-from typing import Union
 from pathlib import Path
+from typing import Union
+
 from word_collection import WordCollection
 
 
@@ -42,7 +44,7 @@ class Sentence:
         for index, word in enumerate(self.words):
             self.words[index] = self.word_collection.find_replacement_word(
                 word)
-        return " ".join(self.words)
+        return ' '.join(self.words)
 
     def __str__(self) -> str:
         """
@@ -50,4 +52,4 @@ class Sentence:
 
         :return: A string representation of the current instance.
         """
-        return " ".join(self.words)
+        return ' '.join(self.words)
